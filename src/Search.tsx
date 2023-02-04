@@ -11,7 +11,8 @@ const Search = () => {
   const { ROUTE } = API;
 
   const getSearch = async () => {
-    const response = await sendGetRequest(`${ROUTE}/api/music`, {
+    const response = await sendGetRequest({
+      endPoint: `${ROUTE}/api/music`,
       query: inputValue,
     });
     setSearchData((prev) => response);

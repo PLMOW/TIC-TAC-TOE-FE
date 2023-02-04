@@ -1,11 +1,16 @@
 import axios from 'axios';
 import API from '../constants/apiConstant';
 
-const sendGetRequest = async (END_POINT: string) => {
+interface sendGetRequestParams {
+  endPoint: string;
+  query: string;
+}
+
+const sendGetRequest = async ({ endPoint, query }: sendGetRequestParams) => {
   const { ERROR } = API;
 
   try {
-    const searchResponse = await axios.get(END_POINT);
+    const searchResponse = await axios.get(endPoint, { params: query });
     const { data } = searchResponse;
 
     return data;
