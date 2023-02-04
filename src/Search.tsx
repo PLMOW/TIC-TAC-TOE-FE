@@ -7,26 +7,34 @@ import API from './utils/constants/apiConstant';
 
 const Search = () => {
   const [searchData, setSearchData] = useRecoilState(searchDataAtom);
-  const inputRef = useRef(null);
-  const {
-    END_POINT: { SEARCH_MUSIC },
-  } = API;
+  const [inputValue, setInputValue] = useState('');
+  const { ROUTE } = API;
 
   const getSearch = async () => {
-    const response = await sendGetRequest('http://localhost:8080/api/music');
+    const response = await sendGetRequest(`${ROUTE}/api/music`, {
+      query: inputValue,
+    });
     setSearchData((prev) => response);
   };
 
-  const searchHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
-    console.log(inputRef);
+    getSearch();
+  };
+
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
+    setInputValue((prev) => value);
   };
 
   return (
     <>
-      <Form onSubmit={searchHandler}>
-        <SearchInput ref={inputRef} type="text" placeholder="search" />
+      <Form onSubmit={submitHandler}>
+        <SearchInput
+          type="text"
+          placeholder="search"
+          onChange={changeHandler}
+        />
         <ToggleBtn onClick={getSearch}>getSearch</ToggleBtn>
       </Form>
       <div>
