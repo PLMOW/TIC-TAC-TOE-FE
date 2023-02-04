@@ -7,12 +7,11 @@ const Search = () => {
   const [searchData, setSearchData] = useState('');
   const inputRef = useRef(null);
   const {
-    END_POINT: { GET_MUSIC },
+    END_POINT: { HELLO },
   } = API;
 
   const getSearch = async () => {
-    const response = await sendGetRequest(GET_MUSIC);
-    console.log(response);
+    const response = await sendGetRequest(HELLO);
     setSearchData((prev) => response);
   };
 
@@ -20,17 +19,17 @@ const Search = () => {
     e.preventDefault();
     console.log(e);
     console.log(inputRef);
-    getSearch();
   };
 
   return (
     <>
       <Form onSubmit={searchHandler}>
         <SearchInput ref={inputRef} type="text" placeholder="search" />
-        <ToggleBtn>getSearch</ToggleBtn>
+        <ToggleBtn onClick={getSearch}>getSearch</ToggleBtn>
       </Form>
       <div>
-        백엔드에서 가져온 데이터입니다 :{searchData ? 'data!' : '데이터 없음'}
+        백엔드에서 가져온 데이터입니다 :
+        {searchData ? searchData : '데이터 없음'}
       </div>
     </>
   );
@@ -38,8 +37,7 @@ const Search = () => {
 
 export default Search;
 
-const ToggleBtn = styled.button`
-  border: none;
+const ToggleBtn = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

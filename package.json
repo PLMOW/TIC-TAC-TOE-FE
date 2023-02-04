@@ -1,8 +1,7 @@
 {
-  "name": "frontend",
+  "name": "tic-tac-toe",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8080",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -12,8 +11,8 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@types/styled-components": "^5.1.26",
-    "axios": "^1.2.6",
-    "framer-motion": "^8.5.5",
+    "axios": "^1.3.2",
+    "framer-motion": "^9.0.1",
     "gsap": "^3.11.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
