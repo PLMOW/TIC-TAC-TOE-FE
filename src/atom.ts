@@ -7,5 +7,5 @@ export const isDarkAtom = atom({
 
 export const searchDataAtom = atom({
   key: 'searchDataAtom',
-  default: {},
+  default: [],
 });
