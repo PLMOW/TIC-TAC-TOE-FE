@@ -13,7 +13,7 @@ interface api {
 
 const END_POINT: endPoint = Object.freeze({
   HELLO: '/api/hello',
-  SEARCH_MUSIC: 'api/music/search',
+  SEARCH_MUSIC: 'api/music',
 });
 
 const ERROR: error = Object.freeze({
