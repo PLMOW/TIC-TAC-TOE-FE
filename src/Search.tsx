@@ -1,35 +1,58 @@
 import React, { useRef, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { searchDataAtom } from './atom';
 import styled from 'styled-components';
 import sendGetRequest from './utils/req/sendGet';
 import API from './utils/constants/apiConstant';
 
 const Search = () => {
-  const [searchData, setSearchData] = useState('');
-  const inputRef = useRef(null);
-  const {
-    END_POINT: { HELLO },
-  } = API;
+  const [searchData, setSearchData] = useRecoilState(searchDataAtom);
+  const [inputValue, setInputValue] = useState('');
+  const { ROUTE } = API;
 
   const getSearch = async () => {
-    const response = await sendGetRequest(HELLO);
+    const response = await sendGetRequest({
+      endPoint: `${ROUTE}/api/music`,
+      query: inputValue,
+    });
     setSearchData((prev) => response);
   };
 
-  const searchHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
-    console.log(inputRef);
+    getSearch();
+  };
+
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
+    setInputValue((prev) => value);
   };
 
   return (
     <>
-      <Form onSubmit={searchHandler}>
-        <SearchInput ref={inputRef} type="text" placeholder="search" />
+      <Form onSubmit={submitHandler}>
+        <SearchInput
+          type="text"
+          placeholder="search"
+          onChange={changeHandler}
+        />
         <ToggleBtn onClick={getSearch}>getSearch</ToggleBtn>
       </Form>
       <div>
-        백엔드에서 가져온 데이터입니다 :
-        {searchData ? searchData : '데이터 없음'}
+        백엔드에서 가져온 데이터입니다 :{searchData ? 123 : '데이터 없음'}
+        <Board>
+          {searchData.map(({ title, id, duration, owner, thumbnail }) => {
+            return (
+              <Wrapper key={id}>
+                <img src={thumbnail} />
+                <div>{title}</div>
+                <div>{id}</div>
+                <div>{duration}</div>
+                <div>{owner}</div>
+              </Wrapper>
+            );
+          })}
+        </Board>
       </div>
     </>
   );
@@ -80,4 +103,26 @@ const Form = styled.form`
   div {
     margin: 10px;
   }
+`;
+
+const Board = styled.div`
+  overflow: auto;
+  background: rgba(20, 20, 20, 0.65);
+  border-radius: 5px;
+  padding: 10px;
+  height: 50vh;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.background};
+  backdrop-filter: blur(3px);
+  font-weight: 600;
+
+  width: 300px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 `;

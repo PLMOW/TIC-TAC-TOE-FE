@@ -1,19 +1,21 @@
 /* Interfaces */
-interface endPoint {
-  [key: string]: string;
+interface defaultInterface {
+  readonly [key: string]: string;
 }
 
-interface error {
-  [key: string]: string;
-}
+interface endPoint extends defaultInterface {}
+
+interface error extends defaultInterface {}
 
 interface api {
-  [key: string]: endPoint | error;
+  END_POINT: endPoint;
+  ERROR: error;
+  ROUTE: string;
 }
 
 const END_POINT: endPoint = Object.freeze({
   HELLO: '/api/hello',
-  SEARCH_MUSIC: 'api/music/search',
+  SEARCH_MUSIC: 'api/music',
 });
 
 const ERROR: error = Object.freeze({
@@ -25,6 +27,7 @@ const ERROR: error = Object.freeze({
 const API: api = Object.freeze({
   END_POINT: END_POINT,
   ERROR: ERROR,
+  ROUTE: 'http://localhost:8080',
 });
 
 export default API;
