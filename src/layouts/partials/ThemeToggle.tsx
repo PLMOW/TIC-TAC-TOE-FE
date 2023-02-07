@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { isDarkAtom } from '../atom';
+import { isDarkAtom } from '../../atom';
 import { useRecoilState } from 'recoil';
 
 const ThemeToggle = () => {

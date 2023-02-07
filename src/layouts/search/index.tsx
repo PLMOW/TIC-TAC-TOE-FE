@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { searchDataAtom } from './atom';
+import { searchDataAtom } from '../../atom';
 import styled from 'styled-components';
-import sendGetRequest from './utils/req/sendGet';
-import API from './utils/constants/apiConstant';
+import sendGetRequest from '../../utils/req/sendGet';
+import API from '../../utils/constants/apiConstant';
 
 const Search = () => {
   const [searchData, setSearchData] = useRecoilState(searchDataAtom);
