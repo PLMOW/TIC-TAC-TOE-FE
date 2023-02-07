@@ -61,15 +61,14 @@ const Owner = styled.div`
 const Wrapper = styled.div<{ id: string }>`
   display: flex;
   justify-content: space-between;
-  background: ${({ theme }) => theme.text};
-  color: ${({ theme }) => theme.background};
+  background: ${({ theme }) => theme.cardBackground};
+  color: ${({ theme }) => theme.cardText};
   border-radius: 3px;
   padding: 10px;
   height: 8rem;
-  transition: 0.15s ease-in-out;
+  transition: 0.1s ease-in-out;
   :hover {
-    background: ${({ theme }) => theme.background};
-    color: ${({ theme }) => theme.text};
+    background: rgba(0, 0, 0, 0.65);
     cursor: pointer;
   }
 `;
