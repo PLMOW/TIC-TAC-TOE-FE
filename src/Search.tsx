@@ -8,11 +8,11 @@ import API from './utils/constants/apiConstant';
 const Search = () => {
   const [searchData, setSearchData] = useRecoilState(searchDataAtom);
   const [inputValue, setInputValue] = useState('');
-  const { ROUTE } = API;
+  const { ROUTE, END_POINT } = API;
 
   const getSearch = async () => {
     const response = await sendGetRequest({
-      endPoint: `${ROUTE}/api/music`,
+      endPoint: `${ROUTE + END_POINT.SEARCH_MUSIC}`,
       query: inputValue,
     });
     setSearchData((prev) => response);
