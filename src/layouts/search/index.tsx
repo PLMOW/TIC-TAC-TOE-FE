@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { searchDataAtom } from '../../atom';
 import styled from 'styled-components';
