@@ -5,7 +5,16 @@ export const isDarkAtom = atom({
   default: true,
 });
 
-export const searchDataAtom = atom({
+/* music Search Data */
+export interface musicData {
+  title: string;
+  id: string;
+  duration: string;
+  owner: string;
+  thumbnail: string;
+}
+
+export const searchDataAtom = atom<musicData[]>({
   key: 'searchDataAtom',
   default: [],
 });

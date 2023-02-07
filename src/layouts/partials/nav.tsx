@@ -1,4 +1,4 @@
-import ThemeToggle from './components/ThemeToggle';
+import ThemeToggle from './ThemeToggle';
 import styled from 'styled-components';
 
 const Nav = () => {

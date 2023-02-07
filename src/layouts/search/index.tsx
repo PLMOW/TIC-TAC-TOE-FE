@@ -1,18 +1,19 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { searchDataAtom } from './atom';
+import { searchDataAtom } from '../../atom';
 import styled from 'styled-components';
-import sendGetRequest from './utils/req/sendGet';
-import API from './utils/constants/apiConstant';
+import sendGetRequest from '../../utils/req/sendGet';
+import API from '../../utils/constants/apiConstant';
+import MusicCard from './musicCard';
 
 const Search = () => {
   const [searchData, setSearchData] = useRecoilState(searchDataAtom);
   const [inputValue, setInputValue] = useState('');
-  const { ROUTE } = API;
+  const { ROUTE, END_POINT } = API;
 
   const getSearch = async () => {
     const response = await sendGetRequest({
-      endPoint: `${ROUTE}/api/music`,
+      endPoint: `${ROUTE + END_POINT.SEARCH_MUSIC}`,
       query: inputValue,
     });
     setSearchData((prev) => response);
@@ -41,17 +42,9 @@ const Search = () => {
       <div>
         백엔드에서 가져온 데이터입니다 :{searchData ? 123 : '데이터 없음'}
         <Board>
-          {searchData.map(({ title, id, duration, owner, thumbnail }) => {
-            return (
-              <Wrapper key={id}>
-                <img src={thumbnail} />
-                <div>{title}</div>
-                <div>{id}</div>
-                <div>{duration}</div>
-                <div>{owner}</div>
-              </Wrapper>
-            );
-          })}
+          {searchData.map((data) => (
+            <MusicCard data={data} />
+          ))}
         </Board>
       </div>
     </>
@@ -111,18 +104,4 @@ const Board = styled.div`
   border-radius: 5px;
   padding: 10px;
   height: 50vh;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  background: ${({ theme }) => theme.text};
-  color: ${({ theme }) => theme.background};
-  backdrop-filter: blur(3px);
-  font-weight: 600;
-
-  width: 300px;
-  margin-bottom: 10px;
-  border-radius: 5px;
 `;

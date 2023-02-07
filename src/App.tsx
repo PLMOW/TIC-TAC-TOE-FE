@@ -3,8 +3,8 @@ import { darkTheme, lightTheme } from './theme';
 import GlobalStyle from './utils/GlobalStyle';
 import { isDarkAtom } from './atom';
 import { useRecoilState } from 'recoil';
-import Search from './Search';
-import Nav from './Nav';
+import Search from './layouts/search/index';
+import Nav from './layouts/partials/nav';
 import styled from 'styled-components';
 
 function App() {
