@@ -10,7 +10,9 @@ const sendGetRequest = async ({ endPoint, query }: sendGetRequestParams) => {
   const { ERROR } = API;
 
   try {
-    const searchResponse = await axios.get(endPoint, { params: query });
+    const searchResponse = await axios.get(endPoint, {
+      params: { query: query },
+    });
     const { data } = searchResponse;
 
     return data;
