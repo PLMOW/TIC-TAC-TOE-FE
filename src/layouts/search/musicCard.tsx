@@ -1,30 +1,83 @@
 import styled from 'styled-components';
 import { musicData } from '../../atom';
 
-const MusicCard = ({ title, id, duration, owner, thumbnail }: musicData) => {
+const MusicCard = ({ data }: { data: musicData }) => {
+  const { title, id, duration, owner, thumbnail } = data;
+
   return (
-    <Wrapper key={id}>
-      <img src={thumbnail} />
-      <div>{title}</div>
-      <div>{id}</div>
-      <div>{duration}</div>
-      <div>{owner}</div>
-    </Wrapper>
+    <Container>
+      <Wrapper id={id}>
+        <Thumbnail thumbnail={thumbnail} />
+        <Info>
+          <Title>{title}</Title>
+          <SubInfo>
+            <Duration>{duration}</Duration>
+            <Owner>{owner}</Owner>
+          </SubInfo>
+        </Info>
+      </Wrapper>
+    </Container>
   );
 };
 
 export default MusicCard;
 
-const Wrapper = styled.div`
+interface ThumbnailProps {
+  thumbnail: string;
+}
+
+const Container = styled.div`
+  position: relative;
+`;
+
+const Info = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 10px;
+  font-weight: 600;
+  background: transparent;
+  width: 300px;
+  border-radius: 3px;
+  overflow-y: auto;
+`;
+
+const SubInfo = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+const Title = styled.div``;
+
+const Duration = styled.div`
+  font-size: 12.5px;
+`;
+
+const Owner = styled.div`
+  font-size: 12.5px;
+`;
+
+const Wrapper = styled.div<{ id: string }>`
+  display: flex;
+  justify-content: space-between;
   background: ${({ theme }) => theme.text};
   color: ${({ theme }) => theme.background};
-  backdrop-filter: blur(3px);
-  font-weight: 600;
+  border-radius: 3px;
+  padding: 10px;
+  height: 8rem;
+  transition: 0.15s ease-in-out;
+  :hover {
+    background: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.text};
+    cursor: pointer;
+  }
+`;
 
-  width: 300px;
-  margin-bottom: 10px;
+const Thumbnail = styled.div<ThumbnailProps>`
+  background: url(${(props) => props.thumbnail});
+  background-size: contain;
+  background-repeat: no-repeat;
   border-radius: 5px;
+  width: 200px;
 `;
