@@ -4,11 +4,12 @@ import Player from './player/Player';
 
 const Room = () => {
   return (
-    <Wrapper>
-      <Player />
-      <div>Room</div>
+    <>
+      <Wrapper>
+        <Player />
+      </Wrapper>
       <Search />
-    </Wrapper>
+    </>
   );
 };
 
