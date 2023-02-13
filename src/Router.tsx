@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Room from './pages/room';
+import Room from './pages/room/Room';
 
 const Router = () => {
   return (
