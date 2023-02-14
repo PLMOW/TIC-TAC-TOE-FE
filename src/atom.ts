@@ -18,3 +18,11 @@ export const searchDataAtom = atom<musicData[]>({
   key: 'searchDataAtom',
   default: [],
 });
+
+/* music Search Toggle */
+export type searchToggleState = boolean;
+
+export const searchToggleAtom = atom<searchToggleState>({
+  key: 'searchToggleAtom',
+  default: false,
+});
