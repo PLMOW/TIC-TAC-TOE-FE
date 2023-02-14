@@ -30,7 +30,7 @@ const ToggleButton = styled.label.attrs({
   background: ${({ isDark, theme }) => (isDark ? theme.text : theme.text)};
   width: 30px;
   height: 30px;
-  position: absolute;
+  //position: absolute;
   padding: 10px;
   border-radius: 10px;
   :hover {

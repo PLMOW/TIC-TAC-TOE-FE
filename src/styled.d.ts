@@ -6,5 +6,6 @@ declare module 'styled-components' {
     text: string;
     cardText: string;
     cardBackground: string;
+    iconBackground: string;
   }
 }

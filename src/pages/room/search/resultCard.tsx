@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { musicData } from '../../atom';
+import { musicData } from '../../../atom';
 
 const MusicCard = ({ data }: { data: musicData }) => {
   const { title, id, duration, owner, thumbnail } = data;
