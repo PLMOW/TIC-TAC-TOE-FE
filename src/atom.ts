@@ -24,7 +24,7 @@ export type searchToggleState = boolean;
 
 export const searchToggleAtom = atom<searchToggleState>({
   key: 'searchToggleAtom',
-  default: false,
+  default: true,
 });
 
 /* loadingAtom */

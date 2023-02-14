@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { searchDataAtom } from '../../../atom';
+import { searchDataAtom, loadingAtom, searchToggleAtom } from '../../../atom';
 import styled from 'styled-components';
 import sendGetRequest from '../../../utils/req/sendGet';
 import API from '../../../utils/constants/apiConstant';
-import MusicCard from './musicCard';
+import ResultBoard from './resultBoard';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Search = () => {
   const [searchData, setSearchData] = useRecoilState(searchDataAtom);
+  const [isLoading, setLoading] = useRecoilState<boolean>(loadingAtom);
+  const [searchToggle, setSearchToggle] = useRecoilState(searchToggleAtom);
   const [inputValue, setInputValue] = useState('');
   const { ROUTE, END_POINT } = API;
 
@@ -29,29 +32,92 @@ const Search = () => {
     setInputValue((prev) => value);
   };
 
+  const overlayToggleHandler = () => {
+    setSearchToggle((prev) => false);
+  };
+
   return (
-    <>
-      <Form onSubmit={submitHandler}>
-        <SearchInput
-          type="text"
-          placeholder="search"
-          onChange={changeHandler}
-        />
-        <ToggleBtn onClick={getSearch}>getSearch</ToggleBtn>
-      </Form>
-      <div>
-        백엔드에서 가져온 데이터입니다 :{searchData ? 123 : '데이터 없음'}
-        <Board>
-          {searchData.map((data) => (
-            <MusicCard data={data} />
-          ))}
-        </Board>
-      </div>
-    </>
+    <AnimatePresence>
+      {searchToggle ? (
+        <>
+          <Overlay onClick={overlayToggleHandler}></Overlay>
+
+          <Container
+            variants={containerVar}
+            initial="from"
+            animate="to"
+            exit="exit"
+          >
+            <Wrapper>
+              <Form onSubmit={submitHandler}>
+                <SearchInput
+                  type="text"
+                  placeholder="search"
+                  onChange={changeHandler}
+                />
+                <ToggleBtn onClick={getSearch}>getSearch</ToggleBtn>
+              </Form>
+              <ResultBoard searchData={searchData} isLoading={false} />
+            </Wrapper>
+          </Container>
+        </>
+      ) : null}
+    </AnimatePresence>
   );
 };
 
 export default Search;
+
+const Overlay = styled.div`
+  position: fixed;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+`;
+
+const containerVar = {
+  from: {
+    opacity: 0,
+    scale: 0,
+    transition: { duration: 0 },
+  },
+  to: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0 },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0,
+    transition: { duration: 0.1 },
+  },
+};
+
+const Container = styled(motion.div)`
+  position: absolute;
+  top: 15%;
+  display: flex;
+  justify-content: center;
+  transition: 0.2s ease-in-out;
+  min-height: 100px;
+  //height: 80vh;
+  max-height: 80vh;
+`;
+
+const Wrapper = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  width: 570px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 1px 3px 15px rgba(111, 111, 111, 0.5);
+`;
 
 const ToggleBtn = styled.div`
   display: flex;
@@ -96,12 +162,4 @@ const Form = styled.form`
   div {
     margin: 10px;
   }
-`;
-
-const Board = styled.div`
-  overflow: auto;
-  background: rgba(20, 20, 20, 0.65);
-  border-radius: 5px;
-  padding: 10px;
-  height: 50vh;
 `;
