@@ -26,3 +26,11 @@ export const searchToggleAtom = atom<searchToggleState>({
   key: 'searchToggleAtom',
   default: false,
 });
+
+/* loadingAtom */
+export type loadingState = boolean;
+
+export const loadingAtom = atom<loadingState>({
+  key: 'loadingAtom',
+  default: false,
+});
