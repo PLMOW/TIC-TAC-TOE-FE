@@ -4,7 +4,6 @@ import ReactPlayer from 'react-player/youtube';
 
 const Player = () => {
   const playerRef = useRef(null);
-  const URL = 'https://www.youtube.com/watch?v=ysz5S6PUM-U' as const;
 
   return (
     <Wrapper>
@@ -21,11 +20,6 @@ const Player = () => {
 export default Player;
 
 const Wrapper = styled.div`
-  display: flex;
-  margin-top: 200px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
   width: 100%;
-  transform: skew(0deg) rotate(0deg);
 `;
