@@ -20,18 +20,15 @@ const Room = () => {
 const Wrapper = styled.div`
   height: 100vh;
   display: flex;
-  position: relative;
-  z-index: -1;
+  overflow: hidden;
 `;
 
 const LeftBox = styled.div`
-  width: 600px;
-  height: 380px;
-  background: teal;
+  width: 500px;
 `;
 
 const RightBox = styled.div`
-  width: calc(100% - 600px);
+  width: calc(100% - 500px);
   background: rgba(23, 23, 22, 0.5);
 `;
 

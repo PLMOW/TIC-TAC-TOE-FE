@@ -20,6 +20,6 @@ const Player = () => {
 export default Player;
 
 const Wrapper = styled.div`
-  height: 100%;
+  height: 380px;
   width: 100%;
 `;
