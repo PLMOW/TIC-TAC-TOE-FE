@@ -37,13 +37,15 @@ const IconWrapper = styled.button`
   font-weight: 600;
   width: 40px;
   height: 35px;
-  background: whitesmoke;
+  background: ${({ theme }) => theme.iconBackground};
   transition: 0.15s ease-in-out;
-  color: black;
+  color: ${({ theme }) => theme.background};
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  border: none;
   :hover {
-    background: #111;
-    color: whitesmoke;
+    border: none;
+    background: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.text};
     cursor: pointer;
   }
 `;

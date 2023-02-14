@@ -10,9 +10,8 @@ const Room = () => {
         <Player />
       </LeftBox>
       {/* RightBox */}
-      <RightBox>
-        <Search />
-      </RightBox>
+      <RightBox></RightBox>
+      <Search />
     </Wrapper>
   );
 };

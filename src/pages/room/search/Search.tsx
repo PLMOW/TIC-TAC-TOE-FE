@@ -49,6 +49,18 @@ const Overlay = styled.div`
   height: 100vh;
 `;
 
+const Container = styled(motion.div)`
+  position: absolute;
+  top: 15%;
+  left: calc(50% - 285px);
+  display: flex;
+  justify-content: center;
+  transition: 0.2s ease-in-out;
+  min-height: 100px;
+  //height: 80vh;
+  max-height: 80vh;
+`;
+
 const Wrapper = styled(motion.div)`
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
@@ -79,14 +91,3 @@ const containerVar = {
     transition: { duration: 0.1 },
   },
 };
-
-const Container = styled(motion.div)`
-  position: absolute;
-  top: 15%;
-  display: flex;
-  justify-content: center;
-  transition: 0.2s ease-in-out;
-  min-height: 100px;
-  //height: 80vh;
-  max-height: 80vh;
-`;
