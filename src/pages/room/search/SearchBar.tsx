@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import API from '../../../utils/constants/apiConstant';
 import sendGetRequest from '../../../utils/req/sendGet';
-import { searchDataAtom, searchToggleAtom } from '../../../atom';
+import { searchDataAtom } from '../../../atom';
+import { useRecoilState } from 'recoil';
 
 const SearchBar = () => {
   const { ROUTE, END_POINT } = API;

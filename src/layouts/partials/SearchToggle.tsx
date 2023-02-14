@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { searchToggleAtom } from '../../../atom';
+import { searchToggleAtom } from '../../atom';
 
 const IconSearch = () => {
   const [toggleState, setToggleState] = useRecoilState(searchToggleAtom);
