@@ -4,29 +4,14 @@ import { motion } from 'framer-motion';
 
 const Header = () => {
   return (
-    <Wrapper>
-      <Title>
-        <span>Search</span>
-        <Exit />
-      </Title>
-    </Wrapper>
+    <Title>
+      <span>Search</span>
+      <Exit />
+    </Title>
   );
 };
 
 export default Header;
-
-const Wrapper = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  position: relative;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  width: 570px;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 1px 3px 15px rgba(111, 111, 111, 0.5);
-`;
 
 const Title = styled.div`
   background: #111;

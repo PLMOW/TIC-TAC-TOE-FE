@@ -26,9 +26,11 @@ const Search = () => {
             animate="to"
             exit="exit"
           >
-            <Header />
-            <SearchBar />
-            <ResultBoard searchData={searchData} isLoading={false} />
+            <Wrapper>
+              <Header />
+              <SearchBar />
+              <ResultBoard searchData={searchData} isLoading={false} />
+            </Wrapper>
           </Container>
         </>
       ) : null}
@@ -45,6 +47,19 @@ const Overlay = styled.div`
   left: 0px;
   width: 100vw;
   height: 100vh;
+`;
+
+const Wrapper = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  width: 570px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 1px 3px 15px rgba(111, 111, 111, 0.5);
 `;
 
 const containerVar = {

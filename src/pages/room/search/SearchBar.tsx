@@ -31,68 +31,83 @@ const SearchBar = () => {
 
   return (
     <Form onSubmit={submitHandler}>
-      <SearchInput type="text" placeholder="search" onChange={changeHandler} />
-      <ToggleBtn onClick={getSearch}>getSearch</ToggleBtn>
+      <Input type="text" placeholder="search" onChange={changeHandler} />
+      <SearchBarIcon clickHandler={getSearch} />
     </Form>
   );
 };
 
 export default SearchBar;
 
-const Wrapper = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  position: relative;
-  z-index: 5;
+const Form = styled.form`
   display: flex;
-  flex-direction: column;
-  width: 570px;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 1px 3px 15px rgba(111, 111, 111, 0.5);
+  margin-bottom: 15px;
 `;
 
-const ToggleBtn = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 50px;
+const Input = styled.input.attrs({ type: 'text' })`
+  border: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  padding: 7px 10px;
   border-radius: 5px;
-  background: ${({ theme }) => theme.text};
-  color: ${({ theme }) => theme.background};
   font-weight: 600;
-  transition: ease-in-out 0.2s;
+  font-size: 16px;
+  transition: ease-in-out 0.1s;
+  background: rgba(222, 222, 222, 0.7);
+  color: #111;
 
   :hover {
     cursor: pointer;
-    background: whitesmoke;
-    color: #2b2b2b;
   }
-`;
-
-const SearchInput = styled.input.attrs({ type: 'text' })`
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  background: rgba(111, 111, 111, 0.1);
-  box-shadow: 0px 0px 5px rgba(111, 111, 111, 0.3);
-  transition: ease-in-out 0.15s;
-  color: ${({ theme }) => theme.text};
 
   :focus {
-    border: none;
+    background: rgba(222, 222, 222, 1);
     outline: none;
-    background: rgba(111, 111, 111, 0.05);
+    color: black;
   }
 `;
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+interface searchCallback {
+  clickHandler: () => Promise<void>;
+}
+const SearchBarIcon = ({ clickHandler }: searchCallback) => {
+  return (
+    <IconWrapper>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-6 h-6"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+        />
+      </svg>
+    </IconWrapper>
+  );
+};
 
-  div {
-    margin: 10px;
+const IconWrapper = styled.button`
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 3px;
+  font-weight: 600;
+  width: 40px;
+  height: 35px;
+  background: whitesmoke;
+  transition: 0.15s ease-in-out;
+  color: black;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  :hover {
+    background: #111;
+    color: whitesmoke;
+    cursor: pointer;
   }
 `;
