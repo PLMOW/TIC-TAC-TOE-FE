@@ -7,6 +7,39 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.text};
     transition: ease-in-out 0.15s;
   }
+  
+    /* prevent Drag */
+body{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow-y: hidden;
+}
+
+/* Scroll webkit CSS */
+div::-webkit-scrollbar {
+    width: 10px;
+}
+
+div::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+    transition: 0.2s ease-in-out;
+}
+
+div::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+div::-webkit-scrollbar-track {
+    background-color: #0c0d1182;
+    border-radius: 3px;
+}
+
+
 
   // Reset CSS
   html, body, div, span, applet, object, iframe,
